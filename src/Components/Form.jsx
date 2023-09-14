@@ -1,4 +1,7 @@
 export const Form = () => {
+
+  
+
   return (
     <form className="form">
       
@@ -21,7 +24,7 @@ export const Form = () => {
       </fieldset>
 
       <div className="buttons">
-        <button className="button button-create">Create User</button>
+        <button className="button button-create">Create Student</button>
         <button className="button button-cancel">Cancel</button>
       </div>
     </form>

@@ -1,0 +1,156 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Variables */
+:root {
+  --primary: #fff;
+}
+
+/* Globals */
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  font-size: 1.6rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+button {
+  display: inline-block;
+  padding: 1rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: .3rem;
+  cursor: pointer;
+}
+
+button:hover {
+  transition: .3s;
+}
+
+table {
+  margin: 0 auto;
+}
+
+thead,
+tbody {
+  text-align: center;
+}
+
+/* Utilities */
+.container {
+  width: 95%;
+  max-width: 100rem;
+  margin: 0 auto;
+}
+
+@media (width >= 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+
+
+/* Title */
+.heading {
+  text-align: center;
+}
+
+/* Main */
+.display {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+@media (width >= 768px) {
+  .display {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5rem;
+  }
+}
+
+.column {
+  border-radius: 1rem;
+}
+
+/* Form */
+.form__field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form__label {
+  font-size: 2rem;
+  margin-bottom: .5rem;
+}
+
+.form__input {
+  padding: .6rem;
+  border: 1px solid #c8c8c8;
+  border-radius: .3rem;
+  font-size: 1.8rem;
+}
+
+.form__input:focus {
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+
+.button-create {
+  background-color: #4f4ffa;
+  color: white;
+  width: 15rem;
+}
+.button-create:hover {
+  background-color: #4343d6;
+}
+
+.button-cancel {
+  background-color: #cfcece;
+  width: 15rem;
+}
+.button-cancel:hover {
+  background-color: #b9b9b9;
+}
+
+
+/* View Students */
+tr:nth-child(even) {
+  background-color: #e7e7e7;
+}
+
+td {
+  padding: .5rem 0;
+}
+
+.button-delete {
+  margin-left: 1rem;
+  background-color: #f64343;
+  color: #ffffff;
+}
+.button-delete:hover {
+  background-color: #db2525;
+  transition: .3s;
+}
