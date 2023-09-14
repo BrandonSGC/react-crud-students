@@ -24,13 +24,13 @@ router.post('/register', async (req, res) => {
       const { name, surname, subject } = req.body;
 
         if (await spCreateStudent(name, surname, subject)) {
-            res.json({success: true, message:'Estudiante registrado correctamente!'});
+            res.json({success: true, message:'Student Created Succesfully!'});
         } else {
-            res.json({success: false, message:'Ha ocurrido un error registrando el estudiante.'});
+            res.json({success: false, message:'There has been an error creating the student.'});
         }
     } catch (error) {
         console.log(error);
-        res.json({success: false, message:'Ha ocurrido un error en el servidor.'});
+        res.json({success: false, message:`Server error: ${error}`});
     }
 });
 

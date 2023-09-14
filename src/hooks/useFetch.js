@@ -4,10 +4,8 @@ async function getStudents() {
   const url = 'http://localhost:3000/students';
 
   const response = await fetch(url);
-  console.log(response);
 
   const data = await response.json();
-  console.log(data);
 
   const students = data.map(student => ({
     id: student.id,
@@ -17,6 +15,23 @@ async function getStudents() {
   }));
 
   return students;
+}
+
+function createStudent(student) {
+  fetch('http://localhost:3000/students/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(student)
+    })
+      .then( (resp) => resp.json())
+      .then( ({message}) => {
+        alert(message);
+      })
+      .catch( (error) => {
+        console.log(error);
+      })
 }
 
 export const useFetch = () => {
@@ -32,11 +47,11 @@ export const useFetch = () => {
 
   useEffect(() => {
     getStudentsInfo();
-  }, []);
-  
+  }, [students]);
 
   return {
     students,
-    isLoading
+    isLoading,
+    createStudent,
   };
 }

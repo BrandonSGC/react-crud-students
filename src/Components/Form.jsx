@@ -1,6 +1,27 @@
-export const Form = () => {
+import { useState } from "react";
+import { useFetch } from "../hooks/useFetch";
 
-  
+export const Form = () => {
+  const {createStudent} = useFetch();
+  const [student, setStudent] = useState({
+    name: '',
+    surname: '',
+    subject: ''
+  })
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    createStudent(student);
+  }
+
+  const handleInputChange = (evt) => {
+    const propertyName = evt.target.name;
+    const value = evt.target.value;
+    setStudent({
+      ...student,
+      [propertyName]: value,
+    })
+  }
 
   return (
     <form className="form">
@@ -9,22 +30,22 @@ export const Form = () => {
 
         <div className="form__field">
           <label className="form__label" htmlFor="name">Name:</label>
-          <input className="form__input" type="text" id="name" name="name" />
+          <input onChange={handleInputChange} className="form__input" type="text" id="name" name="name" />
         </div>
 
         <div className="form__field">
           <label className="form__label" htmlFor="surname">Surname:</label>
-          <input className="form__input" type="text" id="surname" name="surname" />
+          <input onChange={handleInputChange} className="form__input" type="text" id="surname" name="surname" />
         </div>
 
         <div className="form__field">
           <label className="form__label" htmlFor="name">Subject in course:</label>
-          <input className="form__input" type="text" id="subject" name="subject" />
+          <input onChange={handleInputChange} className="form__input" type="text" id="subject" name="subject" />
         </div>
       </fieldset>
 
       <div className="buttons">
-        <button className="button button-create">Create Student</button>
+        <button onClick={handleSubmit} className="button button-create">Create Student</button>
         <button className="button button-cancel">Cancel</button>
       </div>
     </form>
