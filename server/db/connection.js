@@ -1,10 +1,10 @@
-const sql = require('mssql');
+import sql from 'mssql'
 
 const config = {
   user: "sa",
   password: "root",
   server: "localhost",
-  database: "PetCare",
+  database: "Students",
   options: {
     encrypt: true,
     trustServerCertificate: true,
@@ -13,7 +13,25 @@ const config = {
 
 
 // Functions
-async function spCreateStudent(name, surname, subject) {
+
+export async function spSelectAllUsers() {
+  try {
+    const pool = await sql.connect(config);
+
+    const result = await pool
+      .request()
+      .execute("spStudents_SelectAllStudents");
+      
+    return result.recordset;
+
+  } catch (error) {
+    console.log(`Error executing spStudents_SelectAllStudents: ${error}`);
+    return false;
+  }
+}
+
+
+export async function spCreateStudent(name, surname, subject) {
   try {
     const pool = await sql.connect(config);
 
@@ -30,27 +48,4 @@ async function spCreateStudent(name, surname, subject) {
     console.error(`Error executing spStudents_CreateStudent: ${error}.`);
     return false;
   }
-}
-
-
-async function spSelectAllUsers() {
-  try {
-    const pool = await sql.connect(config);
-
-    const result = await pool
-      .request()
-      .execute("spStudents_SelectAllStudents");
-
-    return result.recordset
-
-  } catch (error) {
-    console.log(`Error executing spStudents_SelectAllStudents: ${error}`);
-    return false;
-  }
-  
-}
-
-module.exports = {
-  spCreateStudent,
-  spSelectAllUsers,
 }
