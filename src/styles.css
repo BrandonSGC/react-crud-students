@@ -145,6 +145,10 @@ td {
   padding: .5rem 0;
 }
 
+.buttons-student {
+  display: flex;
+}
+
 .button-delete {
   margin-left: 1rem;
   background-color: #f64343;
@@ -152,5 +156,15 @@ td {
 }
 .button-delete:hover {
   background-color: #db2525;
+  transition: .3s;
+}
+
+.button-edit {
+  margin-left: 1rem;
+  background-color: #fad505;
+  color: #000000;
+}
+.button-edit:hover {
+  background-color: #e3c208;
   transition: .3s;
 }
