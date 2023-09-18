@@ -1,4 +1,5 @@
 import { useFetch } from "../hooks/useFetch";
+import { Spinner } from "./Spinner";
 import { Student } from "./Student";
 
 export const Table = () => {
@@ -7,28 +8,29 @@ export const Table = () => {
   return (
     <>
       {
-        isLoading && (<h1>Loading...</h1>)
-      }
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Surname</th>
-            <th>Subject</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
+        isLoading 
+        ? 
+          <Spinner /> 
+        :
+          <table>
+        
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Subject</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {
-            students.map((student) => (
+          <tbody>
+            {students.map((student) => (
               <Student key={student.id} studentData={student} />
-            ))
-          }
-        </tbody>
-      </table>
+            ))}
+          </tbody>
+        </table>
+      }
     </>
   );
 };
