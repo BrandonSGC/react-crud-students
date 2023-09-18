@@ -5,6 +5,7 @@ import {
   spCreateStudent,
   spSelectAllUsers,
   spModifyStudent,
+  spDeleteStudent
 } from "../db/connection.js";
 
 // Define a middleware to add a base path for all routes in this router.
@@ -60,5 +61,24 @@ router.put("/edit", async (req, res) => {
     res.json({ success: false, message: `Server error: ${error}` });
   }
 });
+
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (await spDeleteStudent(id)) {
+      res.json({ success: true, message: "Student Deleted Succesfully!" });
+    } else {
+      res.json({
+        success: false,
+        message: "There has been an error deleting the student.",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: `Server error: ${error}` });
+  }
+});
+
 
 export default router;

@@ -35,6 +35,23 @@ function createStudent(student) {
       })
 }
 
+function deleteStudent(id) {
+  fetch(`http://localhost:3000/students/delete/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then( (resp) => resp.json())
+      .then( ({message}) => {
+        // Handle Response
+        //alert(message);
+      })
+      .catch( (error) => {
+        console.log(error);
+      })
+}
+
 export const useFetch = () => {
 
   const [students, setStudents] = useState([]);
@@ -55,5 +72,6 @@ export const useFetch = () => {
     students,
     isLoading,
     createStudent,
+    deleteStudent
   };
 }

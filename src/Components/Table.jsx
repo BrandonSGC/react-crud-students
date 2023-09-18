@@ -16,7 +16,7 @@ export const Table = () => {
         
           <thead>
             <tr>
-              <th>Id</th>
+              {/* <th>Id</th> */}
               <th>Name</th>
               <th>Surname</th>
               <th>Subject</th>

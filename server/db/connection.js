@@ -30,7 +30,6 @@ export async function spSelectAllUsers() {
   }
 }
 
-
 export async function spCreateStudent(name, surname, subject) {
   try {
     const pool = await sql.connect(config);
@@ -66,6 +65,23 @@ export async function spModifyStudent(id, name, surname, subject) {
     return true;
   } catch (error) {
     console.error(`Error executing spStudents_ModifyStudent: ${error}.`);
+    return false;
+  }
+}
+
+export async function spDeleteStudent(id) {
+  try {
+    const pool = await sql.connect(config);
+
+    await pool
+      .request()
+      .input("id", id)
+      .execute("spStudents_DeleteStudent");
+
+    console.log("Student deleted succesfully");
+    return true;
+  } catch (error) {
+    console.error(`Error executing spStudents_DeleteStudent: ${error}.`);
     return false;
   }
 }

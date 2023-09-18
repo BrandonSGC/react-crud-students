@@ -25,13 +25,13 @@ export const Form = () => {
       setAlert({
         type: "success",
         message: "Student created successfully!",
-        show: "true",
+        show: true,
       });
     } else {
       setAlert({
         type: "error",
         message: "Please fill the fields correctly",
-        show: "true",
+        show: true,
       });
     }
   };
