@@ -1,9 +1,6 @@
-import React from 'react'
+export const Alert = ({ data }) => {
+  const { type, message, show } = data;
+  const className = `alert ${type}`;
 
-export const Alert = ({type, message}) => {
-  return (
-    <div>
-      <p className={type}>{mesage}</p>
-    </div>
-  )
-}
+  return show ? <p className={className}>{message}</p> : null;
+};

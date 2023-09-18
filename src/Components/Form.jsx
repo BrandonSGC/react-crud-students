@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFetch } from "../hooks/useFetch";
+import { Alert } from "./alert";
 
 export const Form = () => {
   const { createStudent } = useFetch();
+
   const [student, setStudent] = useState({
     name: "",
     surname: "",
     subject: "",
+  });
+
+  const [alert, setAlert] = useState({
+    type: "",
+    message: "",
+    show: false,
   });
 
   const handleSubmit = (evt) => {
@@ -14,8 +22,17 @@ export const Form = () => {
 
     if (validateInputs(student)) {
       createStudent(student);
+      setAlert({
+        type: "success",
+        message: "Student created successfully!",
+        show: "true",
+      });
     } else {
-      console.log('Please fill the fields correctly');
+      setAlert({
+        type: "error",
+        message: "Please fill the fields correctly",
+        show: "true",
+      });
     }
   };
 
@@ -30,12 +47,29 @@ export const Form = () => {
   };
 
   const validateInputs = (student) => {
-  // Validate inputs.
-  const { name, surname, subject } = student;
+    const { name, surname, subject } = student;
+    return (
+      name.trim() != "" &&
+      isNaN(name) &&
+      surname.trim() != "" &&
+      isNaN(surname) &&
+      subject.trim() != "" &&
+      isNaN(subject)
+    );
+  };
 
-  return name.trim() != '' && isNaN(name) && surname.trim() != '' && isNaN(surname) && subject.trim() != '' && isNaN(subject);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert({
+        ...alert,
+        show: false,
+      });
+    }, 3000);
 
-  }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [alert.show]);
 
   return (
     <form className="form">
@@ -79,6 +113,8 @@ export const Form = () => {
           />
         </div>
       </fieldset>
+
+      {alert.show && <Alert data={alert} />}
 
       <div className="buttons">
         <button onClick={handleSubmit} className="button button-create">

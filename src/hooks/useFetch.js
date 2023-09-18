@@ -27,7 +27,8 @@ function createStudent(student) {
     })
       .then( (resp) => resp.json())
       .then( ({message}) => {
-        alert(message);
+        // Handle Response
+        //alert(message);
       })
       .catch( (error) => {
         console.log(error);
@@ -38,6 +39,7 @@ export const useFetch = () => {
 
   const [students, setStudents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
 
   async function getStudentsInfo() {
     const students = await getStudents();

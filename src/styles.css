@@ -65,7 +65,25 @@ tbody {
 }
 
 /* Alerts */
+.alert {
+  text-align: center;
+  padding: 1rem;;
+}
 
+.success {
+  background-color: #31ce05;
+  color: #fff;  
+}
+
+.warning {
+  background-color: #cec705;
+  color: #fff;  
+}
+
+.error {
+  background-color: red;
+  color: #fff;
+}
 
 
 
