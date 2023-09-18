@@ -49,3 +49,23 @@ export async function spCreateStudent(name, surname, subject) {
     return false;
   }
 }
+
+export async function spModifyStudent(id, name, surname, subject) {
+  try {
+    const pool = await sql.connect(config);
+
+    await pool
+      .request()
+      .input("id", id)
+      .input("name", name)
+      .input("surname", surname)
+      .input("subject", subject)
+      .execute("spStudents_ModifyStudent");
+
+    console.log("Student modified succesfully");
+    return true;
+  } catch (error) {
+    console.error(`Error executing spStudents_ModifyStudent: ${error}.`);
+    return false;
+  }
+}

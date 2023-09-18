@@ -49,12 +49,9 @@ export const Form = () => {
   const validateInputs = (student) => {
     const { name, surname, subject } = student;
     return (
-      name.trim() != "" &&
-      isNaN(name) &&
-      surname.trim() != "" &&
-      isNaN(surname) &&
-      subject.trim() != "" &&
-      isNaN(subject)
+      name.trim() != "" && isNaN(name) 
+      && surname.trim() != "" && isNaN(surname) &&
+      subject.trim() != "" && isNaN(subject)
     );
   };
 

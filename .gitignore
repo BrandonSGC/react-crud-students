@@ -26,3 +26,6 @@ dist-ssr
 
 # Script Database
 Students Script.sql
+
+# Http requests
+testAPI.http
