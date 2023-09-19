@@ -1,16 +1,15 @@
-import sql from 'mssql'
+import sql from "mssql";
 
 const config = {
-  user: "sa",
-  password: "root",
-  server: "localhost",
-  database: "Students",
+  user: "BrandonGC",
+  password: "Bra122020!",
+  server: "tiusr23pl.cuc-carrera-ti.ac.cr.\\MSSQLSERVER2019",
+  database: "tiusr26pl_dbStudents",
   options: {
     encrypt: true,
     trustServerCertificate: true,
   },
-}
-
+};
 
 // Functions
 
@@ -18,12 +17,9 @@ export async function spSelectAllUsers() {
   try {
     const pool = await sql.connect(config);
 
-    const result = await pool
-      .request()
-      .execute("spStudents_SelectAllStudents");
-      
-    return result.recordset;
+    const result = await pool.request().execute("spStudents_SelectAllStudents");
 
+    return result.recordset;
   } catch (error) {
     console.log(`Error executing spStudents_SelectAllStudents: ${error}`);
     return false;
@@ -73,10 +69,7 @@ export async function spDeleteStudent(id) {
   try {
     const pool = await sql.connect(config);
 
-    await pool
-      .request()
-      .input("id", id)
-      .execute("spStudents_DeleteStudent");
+    await pool.request().input("id", id).execute("spStudents_DeleteStudent");
 
     console.log("Student deleted succesfully");
     return true;
