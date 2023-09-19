@@ -3,7 +3,9 @@ import { useFetch } from "../hooks/useFetch";
 import { Alert } from "./alert";
 
 export const Form = () => {
-  const { createStudent } = useFetch();
+  const { createStudent, studentInfo } = useFetch();
+
+  
 
   const [student, setStudent] = useState({
     name: "",
@@ -67,6 +69,10 @@ export const Form = () => {
       clearTimeout(timer);
     };
   }, [alert.show]);
+
+  useEffect(() => {
+    console.log(studentInfo);
+  }, [studentInfo])
 
   return (
     <form className="form">

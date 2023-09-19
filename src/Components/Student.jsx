@@ -1,16 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
+
+
+// async function getStudentById(id) {
+//   const url = `http://localhost:3000/students/${id}`;
+
+//   const response = await fetch(url);
+
+//   const data = await response.json();
+
+//   const student = data[0];
+
+//   console.log(student);
+
+//   return student;
+// }
 
 export const Student = ({ studentData }) => {
   const { id, name, surname, subject } = studentData;
 
-  const { deleteStudent } = useFetch();
+  const { deleteStudent, getStudentByIdInfo, studentInfo } = useFetch();
+  // const [studentInfo, setStudentInfo] = useState({
+  //   id:'',
+  //   name:'',
+  //   surname:'',
+  //   subject:''
+  // })
 
-  const handleEdit = () => {
-    console.log('Editing...');
+  // async function getStudentByIdInfo(id) {
+  //   const student = await getStudentById(id);
+  //   setStudentInfo(student);
+  // }
+
+
+  const handleEdit = async () => {
     // Get student data.
+    await getStudentByIdInfo(id);
+    
+    console.log(studentInfo);
 
-    // Load student information into textbox
+    // Send data to Form
+
   }
 
   const handelDelete = () => {

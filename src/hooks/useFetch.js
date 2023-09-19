@@ -17,6 +17,21 @@ async function getStudents() {
   return students;
 }
 
+async function getStudentById(id) {
+  const url = `http://localhost:3000/students/${id}`;
+
+  const response = await fetch(url);
+
+  const data = await response.json();
+
+  const student = data[0];
+
+  //console.log(student);
+
+  return student;
+}
+
+
 function createStudent(student) {
   fetch('http://localhost:3000/students/register', {
       method: 'POST',
@@ -55,12 +70,24 @@ function deleteStudent(id) {
 export const useFetch = () => {
 
   const [students, setStudents] = useState([]);
+  const [studentInfo, setStudentInfo] = useState({
+    id: '',
+    name: '',
+    subject: '',
+    surname: ''
+  });
   const [isLoading, setIsLoading] = useState(true);
 
 
   async function getStudentsInfo() {
     const students = await getStudents();
     setStudents(students);
+    setIsLoading(false);
+  }
+
+  async function getStudentByIdInfo(id) {
+    const student = await getStudentById(id);
+    setStudentInfo(student);
     setIsLoading(false);
   }
 
@@ -72,6 +99,8 @@ export const useFetch = () => {
     students,
     isLoading,
     createStudent,
-    deleteStudent
+    deleteStudent,
+    getStudentByIdInfo,
+    studentInfo
   };
 }

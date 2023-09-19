@@ -4,6 +4,7 @@ const router = express.Router();
 import {
   spCreateStudent,
   spSelectAllUsers,
+  spGetStudentById,
   spModifyStudent,
   spDeleteStudent
 } from "../db/connection.js";
@@ -18,6 +19,19 @@ router.get("/", async (req, res) => {
   try {
     const students = await spSelectAllUsers();
     res.json(students);
+  } catch (error) {
+    res.json({
+      success: false,
+      message: "There has been an error requesting the students",
+    });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const student = await spGetStudentById(id);
+    res.json(student);
   } catch (error) {
     res.json({
       success: false,

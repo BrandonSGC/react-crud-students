@@ -26,6 +26,22 @@ export async function spSelectAllUsers() {
   }
 }
 
+export async function spGetStudentById(id) {
+  try {
+    const pool = await sql.connect(config);
+
+    const result = await pool
+      .request()
+      .input("id", id)
+      .execute("spStudents_GetStudentById");
+
+    return result.recordset;
+  } catch (error) {
+    console.log(`Error executing spStudents_GetStudentById: ${error}`);
+    return false;
+  }
+}
+
 export async function spCreateStudent(name, surname, subject) {
   try {
     const pool = await sql.connect(config);
